@@ -1,0 +1,104 @@
+<html>
+<head>
+    <title>Funcionários</title>
+</head>
+<body>
+    <form id="funcionarioForm">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required><br><br>
+
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" required><br><br>
+
+        <label for="cargo">Cargo:</label>
+        <input type="text" id="cargo" required><br><br>
+
+        <label for="departamento">Departamento (para gerente):</label>
+        <input type="text" id="departamento"><br><br>
+
+        <label for="linguagem">Linguagem (para desenvolvedor):</label>
+        <input type="text" id="linguagem"><br><br>
+
+        <button type="button" onclick="criarFuncionario()">Criar Funcionário</button>
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+        function exibirErro(mensagem) {
+            const output = document.getElementById("output");
+            output.innerHTML = `<p style="color: red;">Erro: ${mensagem}</p>`;
+        }
+
+        function criarFuncionario() {
+            try {
+                const nome = document.getElementById("nome").value;
+                const idade = parseInt(document.getElementById("idade").value);
+                const cargo = document.getElementById("cargo").value;
+                const departamento = document.getElementById("departamento").value;
+                const linguagem = document.getElementById("linguagem").value;
+
+                if (!nome || !idade || !cargo) {
+                    throw new Error("Todos os campos (Nome, Idade e Cargo) são obrigatórios.");
+                }
+
+                if (cargo.toLowerCase() === "gerente") {
+                    if (!departamento) {
+                        throw new Error("O campo Departamento é obrigatório para Gerente.");
+                    }
+                    const gerente = new Gerente(nome, idade, cargo, departamento);
+                    const output = document.getElementById("output");
+                    output.innerHTML = `<p>${gerente.seApresentar()}</p>`;
+                    output.innerHTML += `<p>${gerente.gerenciar()}</p>`;
+                } else if (cargo.toLowerCase() === "desenvolvedor") {
+                    if (!linguagem) {
+                        throw new Error("O campo Linguagem é obrigatório para Desenvolvedor.");
+                    }
+                    const desenvolvedor = new Desenvolvedor(nome, idade, cargo, linguagem);
+                    const output = document.getElementById("output");
+                    output.innerHTML = `<p>${desenvolvedor.seApresentar()}</p>`;
+                    output.innerHTML += `<p>${desenvolvedor.programar()}</p>`;
+                } else {
+                    throw new Error("Cargo inválido. Escolha entre 'Gerente' ou 'Desenvolvedor'.");
+                }
+            } catch (error) {
+                exibirErro(error.message);
+            }
+        }
+
+        class Funcionario {
+            constructor(nome, idade, cargo) {
+                this.nome = nome;
+                this.idade = idade;
+                this.cargo = cargo;
+            }
+
+            seApresentar() {
+                return `Olá, meu nome é ${this.nome}, tenho ${this.idade} anos e sou ${this.cargo}.`;
+            }
+        }
+
+        class Gerente extends Funcionario {
+            constructor(nome, idade, cargo, departamento) {
+                super(nome, idade, cargo);
+                this.departamento = departamento;
+            }
+
+            gerenciar() {
+                return `${this.nome} está gerenciando o departamento ${this.departamento}.`;
+            }
+        }
+
+        class Desenvolvedor extends Funcionario {
+            constructor(nome, idade, cargo, linguagem) {
+                super(nome, idade, cargo);
+                this.linguagem = linguagem;
+            }
+
+            programar() {
+                return `${this.nome} está programando em ${this.linguagem}.`;
+            }
+        }
+    </script>
+</body>
+</html>

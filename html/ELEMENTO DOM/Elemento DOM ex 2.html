@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício de DOM 2</title>
+</head>
+<body>
+
+    <ul id= "listaUL">
+
+
+    </ul>
+
+   
+    <ul class = "listatime">
+
+
+    </ul>
+    
+</body>
+<script>
+    var listaUL = document.getElementById("listaUL");
+    var li1 = document.createElement("li");
+    li1.textContent = "Corinthians";
+    listaUL.appendChild(li1);
+
+    var li2 = document.createElement("li");
+    li2.textContent = "Santos";
+    listaUL.appendChild(li2);
+
+    var li3 = document.createElement("li");
+    li3.textContent = "São Paulo";
+    listaUL.appendChild(li3);
+
+    var li4 = document.createElement("li");
+    li4.textContent = "Palmeiras";
+    listaUL.appendChild(li4);
+
+    var listaEstilo = document.getElementById("listaUL")
+    listaEstilo.style.backgroundColor = "lightblue"
+
+    //maneira utilizada para aplicar o execício
+
+
+
+    times = ["Corinthians","São Paulo","Palmeiras", "Santos"]
+
+    var listadetimes = document.querySelector("ul.listatime")
+
+    for(var i = 0; i < times.length; i++){
+        var time = times[i];
+        var listItem = document.createElement("li");
+        listItem.innerText = time;
+        listItem.style.border = '1px solid blue'
+        listadetimes.appendChild(listItem);
+    }
+
+
+
+
+
+</script>
+</html>

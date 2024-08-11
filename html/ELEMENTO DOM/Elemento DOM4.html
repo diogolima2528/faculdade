@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elemento DOM exemplo 4</title>
+</head>
+<body>
+    <h1>Usando seletor do DOM</h1>
+    <ul>
+        <li>Java</li>
+        <li>Python</li>
+        <li>NodeJS</li>
+    </ul>
+<div id ="conteúdo"  name = "divConteúdo" class = "mensagem">
+
+
+    
+</div>
+
+<div name ="divConteúdo" class = "mensagem">
+
+
+</div>
+
+<div name ="divConteúdo" class = "mensagem">
+
+
+</div>
+
+<span id = "novoSpan" class = "Novo">
+    Texto exemplo de Span
+</span>
+
+<div class = "mensagem">
+
+    
+</div>
+
+
+</body>
+<script>
+    elemento0 = document.getElementsByTagName('li')[0];
+    elemento0.style.color = 'blue'
+
+    elemento1 = document.getElementsByTagName('li')[1];
+    elemento1.style.background = 'red'
+
+    elemento2 = document.getElementsByTagName('li')[2];
+    elemento2.innerText = 'SpringBoot'
+
+    DivElemento = document.getElementById("conteúdo");
+    DivElemento.innerHTML = "<p> Estou colocando a tag p dentro da div </p>"
+
+    DivElemento2 = document.getElementsByName("divConteúdo")[1];
+    DivElemento2.style.color = 'blue'
+    DivElemento2.innerHTML = "Estou colocando um texto"
+
+    DivElemento3 = document.getElementsByClassName("mensagem")[2];
+    DivElemento3.innerHTML = "<p> Estou colocando a tag p dentro da div </p>"
+    DivElemento3.style.color = 'yellow'
+
+    elementoSpanClass = document.querySelector("span.Novo");
+    elementoSpanClass.style.color = 'green';
+
+    elementoSeletor = document.querySelectorAll(".mensagem")[3]
+    elementoSeletor.innerHTML = "<p> Texto incluído </p>"
+
+</script>
+</html>
